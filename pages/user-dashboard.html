@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Passa Bola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <i class="fas fa-futbol"></i>
+                    <span>PASSA BOLA</span>
+                </a>
+            </div>
+            
+            <!-- Botões de Autenticação -->
+            <div class="auth-buttons">
+                <a href="marcar-jogo.html" class="btn-login">
+                    <i class="fas fa-calendar-plus"></i>
+                    Marcar Jogo
+                </a>
+                <a href="loja.html" class="btn-register">
+                    <i class="fas fa-shopping-cart"></i>
+                    Loja
+                </a>
+            </div>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="../index.html" class="menu-item" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="contato.html" class="menu-item" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="marcar-jogo.html" class="menu-item" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="noticias.html" class="menu-item" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- User Menu -->
+            <div class="user-menu">
+                <div class="user-info">
+                    <span id="userName">Usuário</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-dropdown">
+                    <button class="dropdown-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" onclick="showProfile()">
+                            <i class="fas fa-user"></i>
+                            Perfil
+                        </a>
+                        <a href="#" onclick="showSettings()">
+                            <i class="fas fa-cog"></i>
+                            Configurações
+                        </a>
+                        <a href="#" onclick="AuthSystem.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Bem-vindo(a), <span id="welcomeName">Usuário</span>!</h1>
+                    <p>Gerencie seus jogos, acompanhe suas atividades e aproveite ao máximo o Passa Bola.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn-primary" onclick="window.location.href='marcar-jogo.html'">
+                        <i class="fas fa-plus"></i>
+                        Marcar Novo Jogo
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="gamesPlayed">0</h3>
+                            <p>Jogos Participados</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="gamesWon">0</h3>
+                            <p>Vitórias</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="userRating">5.0</h3>
+                            <p>Avaliação</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalHours">0h</h3>
+                            <p>Tempo Jogado</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2>Atividade Recente</h2>
+                    <a href="#" class="view-all">Ver todas</a>
+                </div>
+                <div class="activity-list" id="recentActivity">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Jogo marcado</h4>
+                            <p>Futebol no Parque Central - Amanhã às 15:00</p>
+                            <span class="activity-time">2 horas atrás</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Compra realizada</h4>
+                            <p>Camisa Oficial Passa Bola</p>
+                            <span class="activity-time">1 dia atrás</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upcoming Games -->
+            <section class="upcoming-section">
+                <div class="section-header">
+                    <h2>Próximos Jogos</h2>
+                    <a href="marcar-jogo.html" class="view-all">Ver calendário</a>
+                </div>
+                <div class="games-list" id="upcomingGames">
+                    <div class="game-card">
+                        <div class="game-info">
+                            <h4>Futebol no Parque</h4>
+                            <p><i class="fas fa-calendar"></i> Amanhã, 15:00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Parque Central</p>
+                        </div>
+                        <div class="game-status">
+                            <span class="status-badge confirmed">Confirmado</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PASSA BOLA</h3>
+                    <p>Revolucionando o futebol digital</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/login.js"></script>
+    <script src="../assets/js/user-dashboard.js"></script>
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

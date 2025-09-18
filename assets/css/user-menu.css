@@ -1,0 +1,94 @@
+/* User Menu no site principal */
+.futuristic-nav .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    margin-left: 1rem;
+}
+
+.futuristic-nav .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 25px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.futuristic-nav .user-info i {
+    color: var(--soft-purple);
+}
+
+.futuristic-nav .user-dropdown {
+    position: relative;
+}
+
+.futuristic-nav .dropdown-btn {
+    background: none;
+    border: none;
+    color: var(--soft-purple);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.futuristic-nav .dropdown-btn:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.futuristic-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary-white);
+    border-radius: 15px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    box-shadow: var(--shadow-elegant);
+    padding: 0.5rem;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition-smooth);
+    z-index: 1000;
+}
+
+.futuristic-nav .user-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.futuristic-nav .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+}
+
+.futuristic-nav .dropdown-menu a:hover {
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--soft-purple);
+}
+
+.futuristic-nav .dropdown-menu a i {
+    color: var(--soft-purple);
+    width: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .futuristic-nav .user-menu {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        order: 4;
+    }
+}

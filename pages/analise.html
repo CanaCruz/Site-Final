@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise em Tempo Real - Passa Bola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>PASSA BOLA</span>
+            </a>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="../index.html" class="menu-item" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="contato.html" class="menu-item" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="marcar-jogo.html" class="menu-item" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="noticias.html" class="menu-item" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="page-title">
+                    <span class="title-line">Análise em</span>
+                    <span class="title-line highlight">Tempo Real</span>
+                </h1>
+                <p class="page-subtitle">
+                    Estatísticas avançadas e análise de performance durante os jogos
+                </p>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="analise-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2 class="section-title">Dashboard de Performance</h2>
+                    <div class="live-indicator">
+                        <span class="pulse-dot"></span>
+                        <span>AO VIVO</span>
+                    </div>
+                </div>
+                
+                <!-- Métricas Principais -->
+                <div class="metrics-grid">
+                    <div class="metric-card primary">
+                        <div class="metric-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">12.5</div>
+                            <div class="metric-label">km/h</div>
+                            <div class="metric-subtitle">Velocidade Média</div>
+                        </div>
+                        <div class="metric-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card secondary">
+                        <div class="metric-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">165</div>
+                            <div class="metric-label">bpm</div>
+                            <div class="metric-subtitle">Frequência Cardíaca</div>
+                        </div>
+                        <div class="metric-trend stable">
+                            <i class="fas fa-minus"></i>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card accent">
+                        <div class="metric-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">8.2</div>
+                            <div class="metric-label">km</div>
+                            <div class="metric-subtitle">Distância Percorrida</div>
+                        </div>
+                        <div class="metric-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card success">
+                        <div class="metric-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">89%</div>
+                            <div class="metric-label">Precisão</div>
+                            <div class="metric-subtitle">Taxa de Passes</div>
+                        </div>
+                        <div class="metric-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gráficos e Análises -->
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Performance por Tempo</h3>
+                            <div class="chart-controls">
+                                <button class="chart-btn active">Hoje</button>
+                                <button class="chart-btn">Semana</button>
+                                <button class="chart-btn">Mês</button>
+                            </div>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div class="chart-bars">
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 80%"></div>
+                                <div class="bar" style="height: 45%"></div>
+                                <div class="bar" style="height: 90%"></div>
+                                <div class="bar" style="height: 75%"></div>
+                                <div class="bar" style="height: 85%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="heatmap-container">
+                        <div class="chart-header">
+                            <h3>Mapa de Calor</h3>
+                            <div class="heatmap-legend">
+                                <span class="legend-item">
+                                    <div class="legend-color low"></div>
+                                    <span>Baixa</span>
+                                </span>
+                                <span class="legend-item">
+                                    <div class="legend-color high"></div>
+                                    <span>Alta</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field-heatmap">
+                            <div class="field-grid">
+                                <div class="heat-cell high"></div>
+                                <div class="heat-cell medium"></div>
+                                <div class="heat-cell low"></div>
+                                <div class="heat-cell high"></div>
+                                <div class="heat-cell medium"></div>
+                                <div class="heat-cell low"></div>
+                                <div class="heat-cell medium"></div>
+                                <div class="heat-cell high"></div>
+                                <div class="heat-cell low"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Insights da IA -->
+                <div class="ai-insights">
+                    <div class="insights-header">
+                        <h3><i class="fas fa-brain"></i> Insights da IA</h3>
+                        <span class="insights-badge">Atualizado há 2 min</span>
+                    </div>
+                    <div class="insights-content">
+                        <div class="insight-item">
+                            <div class="insight-icon positive">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="insight-text">
+                                <strong>Sua velocidade aumentou 8%</strong> comparado ao último jogo. Continue mantendo esse ritmo!
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="insight-text">
+                                <strong>Frequência cardíaca elevada</strong> na zona central do campo. Considere reduzir a intensidade.
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-icon info">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="insight-text">
+                                <strong>Sugestão:</strong> Sua precisão de passes é excelente nas laterais. Explore mais essa área!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Passa Bola</h3>
+                    <p>O futuro do futebol está aqui. Conectando jogadores, times e fãs em uma experiência única.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

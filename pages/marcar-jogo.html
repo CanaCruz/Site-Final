@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcar Jogo - Passa Bola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>PASSA BOLA</span>
+            </a>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="../index.html" class="menu-item" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="contato.html" class="menu-item" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="marcar-jogo.html" class="menu-item active" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="noticias.html" class="menu-item" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="page-title">
+                    <span class="title-line">MARCAR</span>
+                    <span class="title-line highlight">JOGO</span>
+                </h1>
+                <p class="page-subtitle">
+                    Agende seu jogo e conecte-se com outros jogadores em nossa plataforma
+                </p>
+            </div>
+        </section>
+
+        <!-- Sistema de Agendamento -->
+        <section class="booking-section">
+            <div class="container">
+                <div class="booking-container">
+                    <!-- Formulário de Agendamento -->
+                    <div class="booking-form-container">
+                        <div class="form-header">
+                            <h2>Agendar Novo Jogo</h2>
+                            <p>Preencha os dados abaixo para criar seu jogo</p>
+                        </div>
+                        
+                        <form class="booking-form" id="bookingForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="input-container">
+                                        <input type="text" id="gameTitle" name="gameTitle" required>
+                                        <label for="gameTitle">Título do Jogo</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="select-container">
+                                        <select id="gameType" name="gameType" required>
+                                            <option value="">Tipo de Jogo</option>
+                                            <option value="futebol">Futebol</option>
+                                            <option value="futsal">Futsal</option>
+                                            <option value="society">Society</option>
+                                            <option value="beach-soccer">Beach Soccer</option>
+                                        </select>
+                                        <label for="gameType">Tipo de Jogo</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="input-container">
+                                        <input type="date" id="gameDate" name="gameDate" required>
+                                        <label for="gameDate">Data do Jogo</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-container">
+                                        <input type="time" id="gameTime" name="gameTime" required>
+                                        <label for="gameTime">Horário</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="select-container">
+                                        <select id="location" name="location" required>
+                                            <option value="">Local do Jogo</option>
+                                            <option value="campo-central">Campo Central</option>
+                                            <option value="quadra-society">Quadra Society</option>
+                                            <option value="campo-beach">Campo Beach Soccer</option>
+                                            <option value="quadra-futsal">Quadra Futsal</option>
+                                        </select>
+                                        <label for="location">Local do Jogo</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-container">
+                                        <input type="number" id="maxPlayers" name="maxPlayers" min="2" max="22" value="10" required>
+                                        <label for="maxPlayers">Máximo de Jogadores</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="textarea-container">
+                                    <textarea id="gameDescription" name="gameDescription" rows="3"></textarea>
+                                    <label for="gameDescription">Descrição (Opcional)</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="publicGame" name="publicGame" checked>
+                                    <span class="checkmark"></span>
+                                    Jogo público (qualquer pessoa pode participar)
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Criar Jogo</span>
+                                <div class="btn-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Calendário de Jogos -->
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <h3>Jogos Agendados</h3>
+                            <div class="calendar-controls">
+                                <button class="calendar-btn" onclick="previousMonth()">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <span class="current-month" id="currentMonth"></span>
+                                <button class="calendar-btn" onclick="nextMonth()">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendário será gerado dinamicamente -->
+                        </div>
+                        
+                        <div class="calendar-legend">
+                            <div class="legend-item">
+                                <div class="legend-color available"></div>
+                                <span>Disponível</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color booked"></div>
+                                <span>Agendado</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color full"></div>
+                                <span>Lotado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lista de Jogos Disponíveis -->
+                <div class="available-games">
+                    <h2>Jogos Disponíveis</h2>
+                    <div class="games-grid" id="gamesGrid">
+                        <!-- Jogos serão carregados dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Confirmação -->
+        <div class="booking-modal" id="bookingModal">
+            <div class="modal-overlay" onclick="closeModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirmar Agendamento</h3>
+                    <button class="close-modal" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Conteúdo será preenchido dinamicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button class="btn-confirm" onclick="confirmBooking()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Passa Bola</h3>
+                    <p>O futuro do futebol está aqui. Conectando jogadores, times e fãs em uma experiência única.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal simples para participação -->
+    <div id="joinModal" class="simple-modal" style="display: none;">
+        <div class="simple-modal-content">
+            <div class="simple-modal-header">
+                <h3>Participar do Jogo</h3>
+                <button class="simple-close-btn" onclick="closeJoinModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="simple-modal-body">
+                <form id="simpleJoinForm" onsubmit="event.preventDefault(); processSimpleJoin();">
+                    <div class="simple-input-group">
+                        <label for="playerName">Seu Nome:</label>
+                        <input type="text" id="playerName" name="playerName" required>
+                    </div>
+                    <div class="simple-input-group">
+                        <label for="playerPosition">Posição Preferida:</label>
+                        <select id="playerPosition" name="playerPosition" required>
+                            <option value="">Escolha sua posição</option>
+                            <option value="goleiro">Goleiro</option>
+                            <option value="zagueiro">Zagueiro</option>
+                            <option value="lateral">Lateral</option>
+                            <option value="volante">Volante</option>
+                            <option value="meio-campo">Meio-Campo</option>
+                            <option value="atacante">Atacante</option>
+                            <option value="qualquer">Qualquer Posição</option>
+                        </select>
+                    </div>
+                    <div class="simple-modal-actions">
+                        <button type="button" class="btn-cancel" onclick="closeJoinModal()">Cancelar</button>
+                        <button type="submit" class="btn-confirm">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/marcar-jogo.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Passa Bola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>PASSA BOLA</span>
+            </a>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="../index.html" class="menu-item" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="contato.html" class="menu-item active" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="marcar-jogo.html" class="menu-item" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="noticias.html" class="menu-item" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="page-title">
+                    <span class="title-line">ENTRE EM</span>
+                    <span class="title-line highlight">CONTATO</span>
+                </h1>
+                <p class="page-subtitle">
+                    Conecte-se conosco e faça parte da revolução do futebol digital
+                </p>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Formulário de Contato -->
+                    <div class="contact-form-container">
+                        <div class="form-header">
+                            <h2>Envie sua Mensagem</h2>
+                            <p>Preencha o formulário abaixo e entraremos em contato em breve</p>
+                        </div>
+                        
+                        <form class="futuristic-form" id="contactForm">
+                            <div class="form-group">
+                                <div class="input-container">
+                                    <input type="text" id="nome" name="nome" required>
+                                    <label for="nome">Nome Completo</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-container">
+                                    <input type="email" id="email" name="email" required>
+                                    <label for="email">E-mail</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="input-container">
+                                    <input type="tel" id="telefone" name="telefone">
+                                    <label for="telefone">Telefone</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="select-container">
+                                    <select id="assunto" name="assunto" required>
+                                        <option value="">Selecione o assunto</option>
+                                        <option value="suporte">Suporte Técnico</option>
+                                        <option value="parceria">Parceria</option>
+                                        <option value="sugestao">Sugestão</option>
+                                        <option value="reclamacao">Reclamação</option>
+                                        <option value="outros">Outros</option>
+                                    </select>
+                                    <label for="assunto">Assunto</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="textarea-container">
+                                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                                    <label for="mensagem">Mensagem</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="aceito" name="aceito" required>
+                                    <span class="checkmark"></span>
+                                    Aceito receber comunicações sobre novidades e promoções
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Enviar Mensagem</span>
+                                <div class="btn-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Informações de Contato -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Endereço</h3>
+                            <p>Rua da Tecnologia, 123<br>
+                            Centro Digital, São Paulo - SP<br>
+                            CEP: 01234-567</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Telefone</h3>
+                            <p>+55 (11) 9999-9999<br>
+                            +55 (11) 3333-3333</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>E-mail</h3>
+                            <p>contato@passabola.com<br>
+                            suporte@passabola.com</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 9h às 18h<br>
+                            Sábado: 9h às 14h<br>
+                            Domingo: Fechado</p>
+                        </div>
+                        
+                        <!-- Redes Sociais -->
+                        <div class="social-section">
+                            <h3>Siga-nos</h3>
+                            <div class="contact-social-links">
+                                <a href="#" class="contact-social-link">
+                                    <i class="fab fa-facebook"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="#" class="contact-social-link">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a>
+                                <a href="#" class="contact-social-link">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="#" class="contact-social-link">
+                                    <i class="fab fa-youtube"></i>
+                                    <span>YouTube</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Passa Bola</h3>
+                    <p>O futuro do futebol está aqui. Conectando jogadores, times e fãs em uma experiência única.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/contato.js"></script>
+</body>
+</html>

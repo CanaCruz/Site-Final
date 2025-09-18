@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passa Bola - Portal Futurista</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/user-menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>PASSA BOLA</span>
+            </div>
+            
+            <!-- Botões de Autenticação ou User Menu -->
+            <div class="auth-buttons" id="authButtons">
+                <a href="pages/login.html" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </a>
+                <a href="pages/register.html" class="btn-register">
+                    <i class="fas fa-user-plus"></i>
+                    Cadastrar
+                </a>
+            </div>
+            
+            <!-- User Menu (quando logado) -->
+            <div class="user-menu" id="userMenu" style="display: none;">
+                <div class="user-info" id="userInfo">
+                    <span id="userName">Usuário</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-dropdown">
+                    <button class="dropdown-btn">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" onclick="goToDashboard()">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" onclick="showProfile()">
+                            <i class="fas fa-user"></i>
+                            Perfil
+                        </a>
+                        <a href="#" onclick="AuthSystem.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="index.html" class="menu-item active" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="pages/contato.html" class="menu-item" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="pages/sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="pages/loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="pages/marcar-jogo.html" class="menu-item" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="pages/noticias.html" class="menu-item" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">BEM-VINDO AO</span>
+                    <span class="title-line highlight">FUTURO DO FUTEBOL</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Experiência única em tecnologia esportiva, conectando jogadores, 
+                    times e fãs em uma plataforma revolucionária.
+                </p>
+                
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('features')">
+                        <i class="fas fa-rocket"></i>
+                        Explorar
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='pages/marcar-jogo.html'">
+                        <i class="fas fa-play"></i>
+                        Marcar Jogo
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Jogadores Ativos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Times Cadastrados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Campeonatos</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">Recursos Avançados</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card clickable" data-feature="analise">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Análise em Tempo Real</h3>
+                        <p>Estatísticas avançadas e análise de performance durante os jogos.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card clickable" data-feature="comunidade">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Comunidade Global</h3>
+                        <p>Conecte-se com jogadores de todo o mundo e forme equipes.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card clickable" data-feature="competicoes">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Competições</h3>
+                        <p>Participe de torneios e campeonatos com premiações incríveis.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card clickable" data-feature="mobile">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>App Mobile</h3>
+                        <p>Acesse todas as funcionalidades diretamente do seu smartphone.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card clickable" data-feature="treinamento">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Treinamento Inteligente</h3>
+                        <p>Programas de treino personalizados com IA para melhorar sua performance.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card clickable" data-feature="streaming">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Streaming ao Vivo</h3>
+                        <p>Transmita seus jogos e acompanhe partidas em tempo real.</p>
+                        <div class="feature-overlay">
+                            <span class="feature-action">Clique para explorar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Pronto para Começar?</h2>
+                    <p>Junte-se à revolução do futebol digital</p>
+                    <button class="btn-primary" onclick="window.location.href='pages/contato.html'">
+                        <i class="fas fa-user-plus"></i>
+                        Cadastre-se Agora
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Passa Bola</h3>
+                    <p>O futuro do futebol está aqui. Conectando jogadores, times e fãs em uma experiência única.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="pages/sobre.html">Sobre</a></li>
+                        <li><a href="pages/contato.html">Contato</a></li>
+                        <li><a href="pages/loja.html">Loja</a></li>
+                        <li><a href="pages/noticias.html">Notícias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script>
+        // Detectar se está rodando em servidor ou não
+        function getBasePath() {
+            if (window.location.protocol === 'file:') {
+                return ''; // Sem servidor
+            } else {
+                return ''; // Com servidor (Live Server)
+            }
+        }
+        
+        // Função para obter caminho correto para dashboards
+        function getDashboardPath(role) {
+            const currentPath = window.location.pathname;
+            
+            // Se estamos na raiz (index.html)
+            if (currentPath === '/' || currentPath.endsWith('index.html') || currentPath === '') {
+                return `pages/${role}-dashboard.html`;
+            }
+            
+            // Se estamos em uma subpasta (pages/)
+            if (currentPath.includes('/pages/')) {
+                return `${role}-dashboard.html`;
+            }
+            
+            // Fallback
+            return `pages/${role}-dashboard.html`;
+        }
+        
+        // Verificar se usuário está logado e mostrar menu apropriado
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = AuthSystem.checkAuth();
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            const userName = document.getElementById('userName');
+            const userInfo = document.getElementById('userInfo');
+            
+            if (currentUser) {
+                // Usuário logado - mostrar menu do usuário
+                authButtons.style.display = 'none';
+                userMenu.style.display = 'flex';
+                userName.textContent = currentUser.name;
+                
+                // Adicionar ícone baseado no tipo de usuário
+                const icon = userInfo.querySelector('i');
+                if (currentUser.role === 'admin') {
+                    icon.className = 'fas fa-crown';
+                    userInfo.style.background = 'linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.1))';
+                    userInfo.style.border = '1px solid rgba(168, 85, 247, 0.3)';
+                } else {
+                    icon.className = 'fas fa-user-circle';
+                }
+            } else {
+                // Usuário não logado - mostrar botões de login
+                authButtons.style.display = 'flex';
+                userMenu.style.display = 'none';
+            }
+        });
+        
+        // Função para ir ao dashboard
+        function goToDashboard() {
+            const currentUser = AuthSystem.checkAuth();
+            if (currentUser) {
+                const dashboardPath = getDashboardPath(currentUser.role);
+                window.location.href = dashboardPath;
+            }
+        }
+        
+        // Função para mostrar perfil
+        function showProfile() {
+            alert('Perfil em desenvolvimento!');
+        }
+    </script>
+</body>
+</html>

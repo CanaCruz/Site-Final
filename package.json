@@ -1,0 +1,35 @@
+{
+  "name": "passa-bola",
+  "version": "1.0.0",
+  "description": "Portal futurista de futebol com design feminino e elegante",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=3000 --open=/index.html",
+    "dev": "npx live-server --port=3000 --open=/index.html --watch=assets,pages",
+    "build": "echo 'Build completed - static site ready for deployment'",
+    "serve": "npx live-server --port=8080"
+  },
+  "keywords": [
+    "futebol",
+    "portal",
+    "website",
+    "futurista",
+    "design",
+    "feminino",
+    "roxo",
+    "rosa"
+  ],
+  "author": "Passa Bola Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/passa-bola/portal-futurista.git"
+  },
+  "bugs": {
+    "url": "https://github.com/passa-bola/portal-futurista/issues"
+  },
+  "homepage": "https://passa-bola.github.io/portal-futurista"
+}

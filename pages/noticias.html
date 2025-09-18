@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias - Passa Bola</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação Futurista -->
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>PASSA BOLA</span>
+            </a>
+            
+            <!-- Menu Circular Futurista -->
+            <div class="circular-menu">
+                <div class="menu-toggle" id="menuToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                
+                <div class="menu-items" id="menuItems">
+                    <a href="../index.html" class="menu-item" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="contato.html" class="menu-item" data-page="contato">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contato</span>
+                    </a>
+                    <a href="sobre.html" class="menu-item" data-page="sobre">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="loja.html" class="menu-item" data-page="loja">
+                        <i class="fas fa-store"></i>
+                        <span>Loja</span>
+                    </a>
+                    <a href="marcar-jogo.html" class="menu-item" data-page="marcar-jogo">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Marcar Jogo</span>
+                    </a>
+                    <a href="noticias.html" class="menu-item active" data-page="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-background">
+                <div class="grid-overlay"></div>
+                <div class="floating-particles"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="page-title">
+                    <span class="title-line">NOTÍCIAS</span>
+                </h1>
+                <p class="page-subtitle">
+                    Fique por dentro das últimas novidades do mundo do futebol e tecnologia
+                </p>
+            </div>
+        </section>
+
+        <!-- Filtros e Busca -->
+        <section class="news-filters">
+            <div class="container">
+                <div class="filters-container">
+                    <div class="search-bar">
+                        <input type="text" id="newsSearchInput" placeholder="Buscar notícias...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-category="all">Todas</button>
+                        <button class="filter-btn" data-category="tecnologia">Tecnologia</button>
+                        <button class="filter-btn" data-category="futebol">Futebol</button>
+                        <button class="filter-btn" data-category="eventos">Eventos</button>
+                        <button class="filter-btn" data-category="parcerias">Parcerias</button>
+                    </div>
+                    
+                    <div class="sort-options">
+                        <select id="newsSortSelect">
+                            <option value="recent">Mais Recentes</option>
+                            <option value="popular">Mais Populares</option>
+                            <option value="trending">Em Alta</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Grid de Notícias -->
+        <section class="news-grid-section">
+            <div class="container">
+                <div class="news-grid" id="newsGrid">
+                    <!-- Notícias serão carregadas dinamicamente aqui -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Passa Bola</h3>
+                    <p>O futuro do futebol está aqui. Conectando jogadores, times e fãs em uma experiência única.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Passa Bola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/noticias.js"></script>
+</body>
+</html>
