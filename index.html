@@ -6,6 +6,7 @@
     <title>Passa Bola - Portal Futurista</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/user-menu.css">
+    <link rel="stylesheet" href="assets/css/clean-professional.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -98,7 +99,7 @@
     </nav>
 
     <!-- Conteúdo Principal -->
-    <main class="main-content">
+    <main class="main-content" id="main-content">
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-background">
@@ -272,6 +273,7 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/login.js"></script>
+    <script src="assets/js/clean-interactions.js"></script>
     <script>
         // Detectar se está rodando em servidor ou não
         function getBasePath() {
@@ -322,7 +324,7 @@
                     userInfo.style.border = '1px solid rgba(168, 85, 247, 0.3)';
                 } else {
                     icon.className = 'fas fa-user-circle';
-                }
+                }1
             } else {
                 // Usuário não logado - mostrar botões de login
                 authButtons.style.display = 'flex';

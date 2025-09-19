@@ -6,7 +6,18 @@ class ShopManager {
         this.currentCategory = 'all';
         this.currentSort = 'popular';
         this.favorites = JSON.parse(localStorage.getItem('shopFavorites')) || [];
+        this.isAdminMode = this.checkAdminMode();
         this.init();
+    }
+
+    checkAdminMode() {
+        // Verificar se está em modo admin via URL ou localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const isAdminUrl = urlParams.get('admin') === 'true';
+        const currentUser = JSON.parse(localStorage.getItem('passabola_current_user') || '{}');
+        const isAdminUser = currentUser.role === 'admin';
+        
+        return isAdminUrl && isAdminUser;
     }
 
     init() {
@@ -15,10 +26,91 @@ class ShopManager {
         this.loadCartFromStorage();
         this.updateCartDisplay();
         this.updateFavoritesDisplay();
+        
+        // Se estiver em modo admin, mostrar controles especiais
+        if (this.isAdminMode) {
+            this.showAdminControls();
+        }
+    }
+
+    showAdminControls() {
+        // Adicionar banner de modo admin
+        const adminBanner = document.createElement('div');
+        adminBanner.className = 'admin-banner';
+        adminBanner.innerHTML = `
+            <div class="admin-banner-content">
+                <div class="admin-info">
+                    <i class="fas fa-crown"></i>
+                    <span>Modo Administrador - Gerenciamento da Loja</span>
+                </div>
+                <button class="btn-admin-exit" onclick="shopManager.exitAdminMode()">
+                    <i class="fas fa-times"></i>
+                    Sair do Modo Admin
+                </button>
+            </div>
+        `;
+        
+        // Inserir banner no topo da página
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.insertBefore(adminBanner, mainContent.firstChild);
+        }
+        
+        // Adicionar botão de adicionar produto
+        const filtersContainer = document.querySelector('.filters-container');
+        if (filtersContainer) {
+            const addProductBtn = document.createElement('button');
+            addProductBtn.className = 'btn-add-product-admin';
+            addProductBtn.innerHTML = `
+                <i class="fas fa-plus"></i>
+                Adicionar Produto
+            `;
+            addProductBtn.onclick = () => this.showAddProductModal();
+            filtersContainer.appendChild(addProductBtn);
+        }
+        
+        // Criar um produto de exemplo se não existir nenhum produto do admin
+        this.createExampleProduct();
+    }
+
+    createExampleProduct() {
+        const products = JSON.parse(localStorage.getItem('passabola_products') || '[]');
+        
+        // Verificar se já existe um produto de exemplo
+        const hasExampleProduct = products.some(p => p.name === 'Produto de Exemplo Admin');
+        
+        if (!hasExampleProduct) {
+            const exampleProduct = {
+                id: Date.now().toString(),
+                name: 'Produto de Exemplo Admin',
+                description: 'Este é um produto criado automaticamente para demonstração do sistema de gerenciamento',
+                price: 199.90,
+                stock: 15,
+                category: 'equipamentos',
+                createdAt: new Date().toISOString(),
+                published: true
+            };
+            
+            products.push(exampleProduct);
+            localStorage.setItem('passabola_products', JSON.stringify(products));
+            
+            // Recarregar produtos para mostrar o novo produto
+            this.loadProducts();
+            
+            this.showNotification('Produto de exemplo criado! Agora você pode testar editar e excluir.', 'success');
+        }
+    }
+
+    exitAdminMode() {
+        // Remover parâmetro admin da URL e recarregar
+        const url = new URL(window.location);
+        url.searchParams.delete('admin');
+        window.location.href = url.toString();
     }
 
     loadProducts() {
-        this.products = [
+        // Carregar produtos padrão
+        const defaultProducts = [
             {
                 id: 1,
                 name: "Kit de Treinamento Completo",
@@ -230,6 +322,32 @@ class ShopManager {
                 features: ["Tecnologia de aquecimento", "Material macio", "Design moderno", "Lavagem fácil"]
             }
         ];
+
+        // Carregar produtos criados pelo admin (apenas os publicados)
+        const adminProducts = JSON.parse(localStorage.getItem('passabola_products') || '[]')
+            .filter(product => product.published === true); // Só produtos publicados
+        
+        // Converter produtos do admin para o formato da loja
+        const convertedAdminProducts = adminProducts.map(product => ({
+            id: parseInt(product.id) + 10000, // IDs únicos para produtos do admin
+            name: product.name,
+            category: product.category,
+            price: product.price,
+            originalPrice: null,
+            description: product.description,
+            rating: 4, // Rating padrão
+            ratingCount: Math.floor(Math.random() * 50) + 10, // Rating count aleatório
+            badge: "Admin",
+            badgeType: "admin",
+            image: "",
+            features: ["Produto criado pelo admin", "Qualidade garantida", "Suporte especializado"],
+            stock: product.stock,
+            adminCreated: true,
+            adminId: product.id
+        }));
+
+        // Combinar produtos padrão com produtos do admin
+        this.products = [...defaultProducts, ...convertedAdminProducts];
         
         this.displayProducts();
     }
@@ -329,17 +447,26 @@ class ShopManager {
         }
 
         productsGrid.innerHTML = products.map(product => `
-            <div class="product-card" data-category="${product.category}" data-price="${product.price}">
+            <div class="product-card ${this.isAdminMode ? 'admin-mode' : ''}" data-category="${product.category}" data-price="${product.price}">
                 <div class="product-image">
                     ${product.image ? `<img src="${product.image}" alt="${product.name}" loading="lazy">` : '<div class="no-image-placeholder"><i class="fas fa-image"></i></div>'}
                     ${product.badge ? `<div class="product-badge ${product.badgeType}">${product.badge}</div>` : ''}
                     <div class="product-actions">
-                        <button class="action-btn" onclick="shopManager.toggleWishlist(${product.id})">
-                            <i class="fas fa-heart ${this.favorites.includes(product.id) ? 'active' : ''}"></i>
-                        </button>
-                        <button class="action-btn" onclick="shopManager.quickView(${product.id})">
-                            <i class="fas fa-eye"></i>
-                        </button>
+                        ${this.isAdminMode ? `
+                            <button class="action-btn admin-btn" onclick="shopManager.editProductAdmin(${product.id})" title="Editar Produto">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn admin-btn" onclick="shopManager.deleteProductAdmin(${product.id})" title="Excluir Produto">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        ` : `
+                            <button class="action-btn" onclick="shopManager.toggleWishlist(${product.id})">
+                                <i class="fas fa-heart ${this.favorites.includes(product.id) ? 'active' : ''}"></i>
+                            </button>
+                            <button class="action-btn" onclick="shopManager.quickView(${product.id})">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        `}
                     </div>
                 </div>
                 <div class="product-info">
@@ -355,10 +482,30 @@ class ShopManager {
                         <span class="current-price">R$ ${product.price.toFixed(2).replace('.', ',')}</span>
                         ${product.originalPrice ? `<span class="original-price">R$ ${product.originalPrice.toFixed(2).replace('.', ',')}</span>` : ''}
                     </div>
-                    <button class="btn-add-cart" onclick="shopManager.addToCart(${product.id})">
-                        <i class="fas fa-shopping-cart"></i>
-                        Adicionar ao Carrinho
-                    </button>
+                    ${this.isAdminMode ? `
+                        ${product.adminCreated ? `
+                            <div class="admin-product-controls">
+                                <button class="btn-admin-edit" onclick="shopManager.editProductAdmin(${product.id})">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </button>
+                                <button class="btn-admin-delete" onclick="shopManager.deleteProductAdmin(${product.id})">
+                                    <i class="fas fa-trash"></i>
+                                    Excluir
+                                </button>
+                            </div>
+                        ` : `
+                            <div class="product-info-standard">
+                                <span class="standard-product-label">Produto Padrão</span>
+                                <span class="standard-product-info">Produto do sistema - não editável</span>
+                            </div>
+                        `}
+                    ` : `
+                        <button class="btn-add-cart" onclick="shopManager.addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i>
+                            Adicionar ao Carrinho
+                        </button>
+                    `}
                 </div>
             </div>
         `).join('');
@@ -585,6 +732,253 @@ class ShopManager {
         this.toggleCart();
     }
 
+    // Funções de Admin para Gerenciar Produtos
+    showAddProductModal() {
+        const modal = document.createElement('div');
+        modal.className = 'admin-modal';
+        modal.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 10000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+            padding: 1rem !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+        `;
+        modal.innerHTML = `
+            <div class="modal-overlay" onclick="this.parentElement.remove()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Adicionar Novo Produto</h3>
+                    <button class="modal-close" onclick="this.closest('.admin-modal').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="admin-form" onsubmit="shopManager.createProduct(event)">
+                        <div class="form-group">
+                            <label>Nome do Produto</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição</label>
+                            <textarea name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Preço (R$)</label>
+                            <input type="number" name="price" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Estoque</label>
+                            <input type="number" name="stock" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select name="category">
+                                <option value="equipamentos">Equipamentos</option>
+                                <option value="roupas">Roupas</option>
+                                <option value="acessorios">Acessórios</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="this.closest('.admin-modal').remove()">Cancelar</button>
+                            <button type="submit" class="btn-primary">Criar Produto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    createProduct(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const productData = {
+            id: Date.now().toString(),
+            name: formData.get('name'),
+            description: formData.get('description'),
+            price: parseFloat(formData.get('price')),
+            stock: parseInt(formData.get('stock')),
+            category: formData.get('category'),
+            createdAt: new Date().toISOString(),
+            published: true
+        };
+
+        const products = JSON.parse(localStorage.getItem('passabola_products') || '[]');
+        products.push(productData);
+        localStorage.setItem('passabola_products', JSON.stringify(products));
+
+        this.showNotification('Produto criado com sucesso!', 'success');
+        this.loadProducts(); // Recarregar produtos
+        event.target.closest('.admin-modal').remove();
+    }
+
+    editProductAdmin(productId) {
+        console.log('Editando produto com ID:', productId);
+        
+        // Encontrar o produto na lista atual da loja
+        const currentProduct = this.products.find(p => p.id === productId);
+        if (!currentProduct) {
+            this.showNotification('Produto não encontrado na loja!', 'error');
+            return;
+        }
+        
+        // Se é um produto do admin, converter ID
+        let adminId;
+        if (currentProduct.adminCreated) {
+            adminId = currentProduct.adminId;
+        } else {
+            // Produto padrão - não pode ser editado
+            this.showNotification('Apenas produtos criados pelo admin podem ser editados!', 'error');
+            return;
+        }
+        
+        const products = JSON.parse(localStorage.getItem('passabola_products') || '[]');
+        const product = products.find(p => p.id === adminId);
+        
+        if (!product) {
+            this.showNotification('Produto não encontrado no sistema!', 'error');
+            return;
+        }
+
+        const modal = document.createElement('div');
+        modal.className = 'admin-modal';
+        modal.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 10000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+            padding: 1rem !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+        `;
+        modal.innerHTML = `
+            <div class="modal-overlay" onclick="this.parentElement.remove()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Editar Produto</h3>
+                    <button class="modal-close" onclick="this.closest('.admin-modal').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="admin-form" onsubmit="shopManager.updateProduct(event, '${product.id}')">
+                        <div class="form-group">
+                            <label>Nome do Produto</label>
+                            <input type="text" name="name" value="${product.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição</label>
+                            <textarea name="description" rows="3" required>${product.description}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Preço (R$)</label>
+                            <input type="number" name="price" step="0.01" min="0" value="${product.price}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Estoque</label>
+                            <input type="number" name="stock" min="0" value="${product.stock}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select name="category">
+                                <option value="equipamentos" ${product.category === 'equipamentos' ? 'selected' : ''}>Equipamentos</option>
+                                <option value="roupas" ${product.category === 'roupas' ? 'selected' : ''}>Roupas</option>
+                                <option value="acessorios" ${product.category === 'acessorios' ? 'selected' : ''}>Acessórios</option>
+                                <option value="outros" ${product.category === 'outros' ? 'selected' : ''}>Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="this.closest('.admin-modal').remove()">Cancelar</button>
+                            <button type="submit" class="btn-primary">Atualizar Produto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    updateProduct(event, productId) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const products = JSON.parse(localStorage.getItem('passabola_products') || '[]');
+        const productIndex = products.findIndex(p => p.id === productId);
+        
+        if (productIndex === -1) {
+            this.showNotification('Produto não encontrado!', 'error');
+            return;
+        }
+
+        products[productIndex].name = formData.get('name');
+        products[productIndex].description = formData.get('description');
+        products[productIndex].price = parseFloat(formData.get('price'));
+        products[productIndex].stock = parseInt(formData.get('stock'));
+        products[productIndex].category = formData.get('category');
+        products[productIndex].updatedAt = new Date().toISOString();
+
+        localStorage.setItem('passabola_products', JSON.stringify(products));
+
+        this.showNotification('Produto atualizado com sucesso!', 'success');
+        this.loadProducts(); // Recarregar produtos
+        event.target.closest('.admin-modal').remove();
+    }
+
+    deleteProductAdmin(productId) {
+        console.log('Excluindo produto com ID:', productId);
+        
+        // Encontrar o produto na lista atual da loja
+        const currentProduct = this.products.find(p => p.id === productId);
+        if (!currentProduct) {
+            this.showNotification('Produto não encontrado na loja!', 'error');
+            return;
+        }
+        
+        // Se é um produto do admin, converter ID
+        let adminId;
+        if (currentProduct.adminCreated) {
+            adminId = currentProduct.adminId;
+        } else {
+            // Produto padrão - não pode ser excluído
+            this.showNotification('Apenas produtos criados pelo admin podem ser excluídos!', 'error');
+            return;
+        }
+        
+        const products = JSON.parse(localStorage.getItem('passabola_products') || '[]');
+        const product = products.find(p => p.id === adminId);
+        
+        if (!product) {
+            this.showNotification('Produto não encontrado no sistema!', 'error');
+            return;
+        }
+
+        if (confirm(`Tem certeza que deseja excluir o produto "${product.name}"?`)) {
+            const filteredProducts = products.filter(p => p.id !== adminId);
+            localStorage.setItem('passabola_products', JSON.stringify(filteredProducts));
+
+            this.showNotification('Produto excluído com sucesso!', 'success');
+            this.loadProducts(); // Recarregar produtos
+        }
+    }
+
     showNotification(message, type = 'info') {
     const notification = document.createElement('div');
         notification.className = `notification ${type}`;
@@ -624,6 +1018,13 @@ let shopManager;
 document.addEventListener('DOMContentLoaded', function() {
     shopManager = new ShopManager();
 });
+
+// Função para recarregar produtos (chamada pelo admin dashboard)
+function reloadShopProducts() {
+    if (shopManager) {
+        shopManager.loadProducts();
+    }
+}
 
 // Funções globais para os botões do HTML
 function toggleCart() {

@@ -3656,6 +3656,369 @@ body {
     background: var(--neon-pink);
 }
 
+.product-badge.admin {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+/* Estilos para Modo Admin na Loja */
+.admin-banner {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+}
+
+.admin-banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.admin-info i {
+    font-size: 1.2rem;
+}
+
+.btn-admin-exit {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-admin-exit:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-add-product-admin {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.btn-add-product-admin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* Produtos em modo admin */
+.product-card.admin-mode {
+    border: 2px solid rgba(124, 58, 237, 0.3);
+    position: relative;
+}
+
+.product-card.admin-mode::before {
+    content: "ADMIN";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.admin-product-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-admin-edit {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-admin-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-admin-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-admin-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.action-btn.admin-btn {
+    background: rgba(124, 58, 237, 0.9);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn.admin-btn:hover {
+    background: rgba(124, 58, 237, 1);
+    transform: scale(1.1);
+}
+
+.action-btn.admin-btn:first-child {
+    background: rgba(59, 130, 246, 0.9);
+}
+
+.action-btn.admin-btn:first-child:hover {
+    background: rgba(59, 130, 246, 1);
+}
+
+.action-btn.admin-btn:last-child {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+.action-btn.admin-btn:last-child:hover {
+    background: rgba(239, 68, 68, 1);
+}
+
+/* Estilos para produtos padrão em modo admin */
+.product-info-standard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.standard-product-label {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.standard-product-info {
+    color: var(--text-gray);
+    font-size: 0.8rem;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Modais de Admin na Loja */
+.admin-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    padding: 2rem !important;
+    box-sizing: border-box !important;
+}
+
+.admin-modal .modal-content {
+    background: white !important;
+    border-radius: 20px !important;
+    max-width: 500px !important;
+    width: 100% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    margin: auto !important;
+    transform: none !important;
+}
+
+.admin-modal .modal-header {
+    padding: 1.5rem !important;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.2) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.admin-modal .modal-header h3 {
+    margin: 0 !important;
+    color: var(--text-dark) !important;
+    font-weight: 700 !important;
+}
+
+.admin-modal .modal-close {
+    background: none !important;
+    border: none !important;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    color: var(--text-gray) !important;
+    transition: color 0.3s ease !important;
+}
+
+.admin-modal .modal-close:hover {
+    color: var(--text-dark) !important;
+}
+
+.admin-modal .modal-body {
+    padding: 1.5rem !important;
+}
+
+.admin-modal .admin-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+}
+
+.admin-modal .form-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+}
+
+.admin-modal .form-group label {
+    font-weight: 600 !important;
+    color: var(--text-dark) !important;
+}
+
+.admin-modal .form-group input,
+.admin-modal .form-group textarea,
+.admin-modal .form-group select {
+    padding: 0.75rem !important;
+    border: 2px solid rgba(168, 85, 247, 0.2) !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    transition: border-color 0.3s ease !important;
+}
+
+.admin-modal .form-group input:focus,
+.admin-modal .form-group textarea:focus,
+.admin-modal .form-group select:focus {
+    outline: none !important;
+    border-color: var(--soft-purple) !important;
+}
+
+.admin-modal .form-actions {
+    display: flex !important;
+    gap: 1rem !important;
+    justify-content: flex-end !important;
+    margin-top: 1rem !important;
+}
+
+.admin-modal .btn-primary {
+    background: linear-gradient(135deg, var(--soft-purple), var(--deep-purple)) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.admin-modal .btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3) !important;
+}
+
+.admin-modal .btn-secondary {
+    background: var(--secondary-white) !important;
+    color: var(--text-dark) !important;
+    border: 2px solid rgba(168, 85, 247, 0.2) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.admin-modal .btn-secondary:hover {
+    background: rgba(168, 85, 247, 0.1) !important;
+    border-color: var(--soft-purple) !important;
+}
+
+/* Garantir centralização absoluta do modal */
+.admin-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+
+.admin-modal .modal-content {
+    position: relative !important;
+    margin: 0 !important;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+}
+
 .product-actions {
     position: absolute;
     top: 1rem;
